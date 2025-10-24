@@ -74,7 +74,7 @@ Additional contributors welcome!
 
 📌 License
 
-This project is private for academic/organizational use.
+This project is private for organizational use.
 Not licensed for commercial reuse without permission.
 
 ✅ Future Improvements
