@@ -66,7 +66,9 @@ VS Code workspace files
 
 Mwakai Joseph
 
-[Your Colleague’s Name]
+Michelle Ndibui
+
+Griffin Arunga
 
 Additional contributors welcome!
 
