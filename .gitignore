@@ -2,5 +2,6 @@
 /vendor/
 /node_modules/
 .env
+*.sql
 .DS_Store
 Thumbs.db
