@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2025 at 11:49 AM
+-- Generation Time: Oct 24, 2025 at 07:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `contact`
+-- Database: `contacts`
 --
 
 -- --------------------------------------------------------
@@ -28,53 +28,46 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('super','admin') DEFAULT 'super',
-  `can_edit_results` tinyint(1) DEFAULT 0,
-  `can_delete_results` tinyint(1) DEFAULT 0,
-  `is_active` tinyint(1) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role` enum('super','admin') DEFAULT NULL,
+  `can_edit_results` tinyint(1) DEFAULT NULL,
+  `can_delete_results` tinyint(1) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `login_count` int(11) DEFAULT NULL,
+  `can_edit_contacts` tinyint(1) DEFAULT NULL,
+  `can_delete_contacts` tinyint(1) DEFAULT NULL,
+  `can_register_users` tinyint(1) DEFAULT NULL,
+  `can_manage_admins` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `role`, `can_edit_results`, `can_delete_results`, `is_active`) VALUES
-(1, 'Ghost', '$2b$12$gynOMrKXKvN7eoCM5IqQEur/cCYzjjbvknr1Z90iv4xDZ38X0duwy', 'super', 1, 1, 1),-- Password:Super!Pass2025#
- 
-(7, 'Kaigu', '$2b$12$3mVpuIpFjyN.gmK9XEjr4.3W.19k5KqHWoP7XiA/9z.ol6XBP1Vdm', 'admin', 0, 0, 1);-- Password: Admin!Pass2025#
-
+INSERT INTO `admins` (`id`, `username`, `password`, `role`, `can_edit_results`, `can_delete_results`, `is_active`, `last_login`, `created_at`, `updated_at`, `email`, `login_count`, `can_edit_contacts`, `can_delete_contacts`, `can_register_users`, `can_manage_admins`) VALUES
+(1, 'super', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'super', 1, 1, 1, '2025-10-22 09:54:01', '2025-10-22 09:50:57', '2025-10-22 09:50:57', 'super@contacts.com', 0, 1, 1, 1, 1),
+(2, 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 1, 0, 1, '2025-10-22 09:58:34', '2025-10-22 09:50:57', '2025-10-22 09:50:57', 'admin@contacts.com', 0, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
---
--- Table structure for failed login attempts
---
-
-CREATE TABLE `login_attempts` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `ip_address` VARCHAR(45) NOT NULL,
-    `attempt_time` DATETIME NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
 --
 -- Table structure for table `contact`
 --
 
 CREATE TABLE `contact` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Caller_ID` varchar(10) DEFAULT NULL,
-  `floor` varchar(50) DEFAULT NULL,
-  `contact_name` varchar(100) DEFAULT NULL,
-  `department` varchar(100) DEFAULT NULL,
-  `remarks` text DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `Caller_ID` varchar(255) DEFAULT NULL,
+  `floor` varchar(255) DEFAULT NULL,
+  `contact_name` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `remarks` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contact`
@@ -253,41 +246,93 @@ INSERT INTO `contact` (`id`, `Caller_ID`, `floor`, `contact_name`, `department`,
 (373, '1314', '13th', 'George Awino', 'Internal Audit', ''),
 (375, '1316', '13th', 'Rose Ayugu', 'HR', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_attempts`
+--
+
+CREATE TABLE `login_attempts` (
+  `id` int(11) NOT NULL,
+  `ip_address` varchar(255) DEFAULT NULL,
+  `attempt_time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `system_settings`
+--
+
+CREATE TABLE `system_settings` (
+  `id` int(11) NOT NULL,
+  `setting_name` varchar(255) DEFAULT NULL,
+  `setting_value` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_contact_caller` (`Caller_ID`),
+  ADD KEY `idx_contact_department` (`department`);
+
+--
+-- Indexes for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `setting_name` (`setting_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=376;
+
+--
+-- AUTO_INCREMENT for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `system_settings`
+--
+ALTER TABLE `system_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
--- --------------------------------------------------------
--- EXTRA SAFETY & IMPROVEMENTS
--- --------------------------------------------------------
-
-SET FOREIGN_KEY_CHECKS=0;
-
--- Convert tables to utf8mb4
-ALTER TABLE `admins` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE `contact` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE `login_attempts` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- Ensure AUTO_INCREMENT
-ALTER TABLE `admins` MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `contact` MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
-
--- Clean contact data: trim & normalize empty strings
-UPDATE `contact`
-  SET contact_name = NULLIF(TRIM(contact_name), ''),
-      department   = NULLIF(TRIM(department), ''),
-      floor        = NULLIF(TRIM(floor), ''),
-      Caller_ID    = NULLIF(TRIM(Caller_ID), ''),
-      remarks      = NULLIF(TRIM(remarks), '')
-  WHERE 1;
-
--- Add indexes for faster lookups
-CREATE INDEX idx_contact_caller ON `contact`(Caller_ID);
-CREATE INDEX idx_contact_department ON `contact`(department);
-
--- Add timestamps to admins if missing
-ALTER TABLE `admins`
-  ADD COLUMN IF NOT EXISTS created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
-
-SET FOREIGN_KEY_CHECKS=1;
-
--- End of file
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
