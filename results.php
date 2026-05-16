@@ -242,34 +242,32 @@ if ($query !== '') {
 
 <body>
     <!-- ======= Top Menu ======= -->
-    <nav class="top-menu">
-        <div class="menu-left">
+    <div class="top-menu">
+        <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="dashboard.php">Contacts</a></li>
+                <li><a href="results.php" class="active">Contacts</a></li>
                 <li><a href="#">Locations</a></li>
                 <li><a href="#">FAQs</a></li>
                 <li><a href="#">Download</a></li>
+                <li><a href="index.php">Home</a></li>
             </ul>
-        </div>
+        </nav>
         <div class="menu-right">
             <?php if (isset($_SESSION['admin_id'])): ?>
                 <span style="color: white; margin-right: 15px;">Welcome, <?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?></span>
-                <a href="dashboard.php" class="login-btn">Dashboard</a>
                 <a href="logout.php" class="login-btn">Logout</a>
             <?php else: ?>
-                <a href="login.php" class="login-btn">Admin Login</a>
+                <a href="login.php" class="login-btn">Login</a>
             <?php endif; ?>
-            <img src="images/telephone.jpg" alt="Phone Icon">
         </div>
-    </nav>
+    </div>
 
     <!-- ======= Header Section ======= -->
     <header class="header-bottom">
         <div class="header-flex">
             <img src="images/logo.png" alt="Logo" class="logo">
             <h1 class="site-title">Search Results</h1>
-            <img src="images/telephone.jpg" alt="Telephone" class="header-image">
+            <img src="images/telephone.jpg" alt="Telephone" class="telephone-img">
         </div>
     </header>
 

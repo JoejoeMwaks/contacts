@@ -197,24 +197,28 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 </head>
 <body>
 
+    <!-- ======= Top Menu ======= -->
     <div class="top-menu">
         <nav>
-             <ul>
-           <li> <a href="index.php">Contacts</a></li>
-             <li><a href="">Locations</a></li>
-            <li> <a href="">FAQs</a></li>
-            <li> <a href="">Download</a></li>
-             <li><a href="">Feedback</a></li>
-</ul>
+            <ul>
+                <li><a href="results.php">Contacts</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Download</a></li>
+                <li><a href="index.php">Home</a></li>
+            </ul>
         </nav>
+        <a href="login.php" class="login-btn active">Login</a>
     </div>
+
+    <!-- ======= Header Section ======= -->
     <header class="header-bottom">
         <div class="header-flex">
-        <img src="images/logo.png" alt="Logo" class="logo">
-        <h1 class="site-title"> Login </h1>
-        <img src="images/telephone.jpg" alt="Header Visual" class="header-image">
-    </div>
-</header>
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <h1 class="site-title">Login</h1>
+            <img src="images/telephone.jpg" alt="Telephone" class="telephone-img">
+        </div>
+    </header>
 
 <main>
     <div class="main-content">
