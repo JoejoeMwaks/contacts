@@ -15,4 +15,7 @@ services:
         sync: false
       - key: DB_PORT
         sync: false
+      - key: PORT
+        value: 80
+
 
