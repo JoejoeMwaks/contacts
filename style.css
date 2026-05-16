@@ -401,31 +401,63 @@ footer {
 /* ==========================
    Media Queries (Responsive)
 ========================== */
-@media (max-width: 768px) {
-  .top-menu {
-    flex-direction: column;
-    padding: 10px 15px;
-    gap: 15px;
+@media (max-width: 850px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .top-menu nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #b06443;
+    padding: 80px 20px;
+    transition: 0.3s;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  }
+
+  .top-menu nav.active {
+    right: 0;
   }
 
   .top-menu nav ul {
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .header-flex {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .top-menu nav ul li a {
+    font-size: 18px;
+    width: 100%;
+    display: block;
+  }
+
+  .menu-right {
+    margin-right: 40px;
+  }
+
+  .main-content {
+    display: block; /* Fix for left-side cut-off */
+    padding: 15px 5px;
+    align-items: flex-start;
+  }
+
+  .container, .search-container {
+    width: 100% !important;
+    margin: 10px 0 !important;
+    border-radius: 0;
+    padding: 15px 10px;
+  }
+
+  .results-header {
     text-align: center;
+    width: 100%;
   }
-
-  .header-bottom {
-    padding: 10px;
-  }
-
+  
   .site-title {
     font-size: 18px;
-    margin: 10px 0;
   }
 
   .logo {
@@ -433,45 +465,17 @@ footer {
   }
 
   .telephone-img, .header-image {
-    display: none; /* Hide on small screens to save space */
-  }
-
-  .main-content {
-    padding: 15px 5px;
-  }
-
-  .search-container {
-    padding: 20px 15px;
-  }
-
-  .search-container h1 {
-    font-size: 1.3rem;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .top-menu nav ul li a {
-    font-size: 13px;
-    padding: 5px 8px;
-  }
-
-  .search-container {
-    padding: 20px;
-  }
-
-  .search-container input[type="text"] {
-    font-size: 14px;
-    padding: 12px 20px;
-  }
-
-  .search-container button[type="submit"] {
     font-size: 16px;
-    padding: 12px 20px;
   }
-
+  
   table th, table td {
     padding: 8px 10px;
     font-size: 13px;
   }
 }
-
