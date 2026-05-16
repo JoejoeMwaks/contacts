@@ -4,6 +4,11 @@ FROM php:8.2-apache
 # Install MySQL extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Set DirectoryIndex to index.php
+RUN echo "DirectoryIndex index.php index.html" > /etc/apache2/conf-available/docker-php.conf && \
+    a2enconf docker-php
+
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
