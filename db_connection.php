@@ -1,14 +1,26 @@
 <?php
-$servername = "localhost";   // XAMPP default
-$username   = "root";        // XAMPP default (no password)
-$password   = "";            // leave empty unless you set a root password
-$dbname     = "contacts_db";    // your database name
+$host = getenv('DB_HOST') ?: "localhost";
+$user = getenv('DB_USER') ?: "root";
+$pass = getenv('DB_PASS') ?: "";
+$dbname = getenv('DB_NAME') ?: "contacts_db";
+$port = getenv('DB_PORT') ?: "3306";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_init();
 
-// Check connection
+if (strpos($host, 'aivencloud.com') !== false) {
+    // Aiven requires SSL
+    $ca_cert = '/etc/ssl/certs/ca-certificates.crt';
+    if (!file_exists($ca_cert)) {
+        $ca_cert = NULL;
+    }
+    mysqli_ssl_set($conn, NULL, NULL, $ca_cert, NULL, NULL);
+    $conn->real_connect($host, $user, $pass, $dbname, (int)$port, NULL, MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
+} else {
+    $conn->real_connect($host, $user, $pass, $dbname, (int)$port);
+}
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 ?>
+
