@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNBS PhoneBook - Homepage</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,34 +36,31 @@
     </header>
 
     <!-- ======= Search Section ======= -->
-    <?php $search = isset($_GET['query']) ? $_GET['query'] : ''; ?>
-
-   <div class="main-content">
-    <main class="search-container">
-        <form method="get" action="results.php">
-            <input type="text" name="query" placeholder="Search by Floor, Department, Extension, User"
-                value="<?php echo htmlspecialchars($_GET['query'] ?? ''); ?>" required>
-         <button type="submit">Search</button>
-        </form>
-        
-        <?php if (isset($_SESSION['admin_id'])): ?>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="dashboard.php" class="btn-admin">Go to Admin Dashboard</a>
-        </div>
-        <?php endif; ?>
-    </main>
+    <div class="main-content">
+        <main class="search-container">
+            <h1 style="color: #b06443; margin-bottom: 20px;">Find a Contact</h1>
+            <form method="get" action="results.php">
+                <input type="text" name="query" placeholder="Search by Floor, Department, Extension, User"
+                    value="<?php echo htmlspecialchars($_GET['query'] ?? ''); ?>" required>
+                <button type="submit">Search</button>
             </form>
-    </main>
+            
+            <?php if (isset($_SESSION['admin_id'])): ?>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="dashboard.php" class="btn-admin">Go to Admin Dashboard</a>
+            </div>
+            <?php endif; ?>
+        </main>
     </div>
 
     <!-- ======= Footer ======= -->
     <footer>
         <div class="footer-top">
-            <img src="images/facebook.ico" class="icons">
-            <img src="images/instagram.ico" class="icons">
-            <img src="images/twitter.ico" class="icons">
-            <img src="images/linkedin.ico" class="icons">
-            <img src="images/youtube.ico" class="icons">
+            <img src="images/facebook.ico" class="icons" alt="Facebook">
+            <img src="images/instagram.ico" class="icons" alt="Instagram">
+            <img src="images/twitter.ico" class="icons" alt="Twitter">
+            <img src="images/linkedin.ico" class="icons" alt="LinkedIn">
+            <img src="images/youtube.ico" class="icons" alt="YouTube">
         </div>
         <div class="footer-bottom">
             <p id="copyright">© 2025 Kenya National Bureau of Statistics. All rights reserved.</p>
