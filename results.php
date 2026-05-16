@@ -75,166 +75,30 @@ if ($query !== '') {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        .results-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-        
+        /* Specific overrides for results page */
         .results-header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(240, 240, 240, 0.8);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        
-        .results-header h2 {
-            color: #663300;
-            margin-bottom: 10px;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            padding: 20px;
             margin-bottom: 20px;
         }
-        
-        .table-container table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .table-container th {
-            background: rgba(102, 51, 0, 0.9);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        .table-container td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(224, 224, 224, 0.7);
-            background: rgba(255, 255, 255, 0.8);
-        }
-        
-        .table-container tr:hover {
-            background: rgba(248, 249, 250, 0.9);
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 50px 20px;
-            color: #6c757d;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(224, 224, 224, 0.7);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 12px;
-        }
-        
-        .pagination a {
-            display: inline-block;
-            padding: 8px 15px;
-            border: 1px solid rgba(221, 221, 221, 0.8);
-            border-radius: 4px;
-            text-decoration: none;
+        .results-header h2 {
             color: #663300;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
         }
-        
-        .pagination a:hover {
-            background: rgba(102, 51, 0, 0.9);
-            color: white;
-            border-color: rgba(102, 51, 0, 0.9);
-        }
-        
-        .pagination a.active {
-            background: rgba(102, 51, 0, 0.9);
-            color: white;
-            border-color: rgba(102, 51, 0, 0.9);
-        }
-        
-        .btn-primary {
-            display: inline-block;
-            padding: 12px 25px;
-            background: rgba(102, 51, 0, 0.9);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-        }
-        
-        .btn-primary:hover {
-            background: rgba(77, 38, 0, 0.9);
-            transform: translateY(-2px);
-        }
-        
         .btn-secondary {
             display: inline-block;
             padding: 10px 20px;
-            background: rgba(108, 117, 125, 0.9);
+            background: #6c757d;
             color: white;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
-        
-        .btn-secondary:hover {
-            background: rgba(84, 91, 98, 0.9);
-            transform: translateY(-2px);
-        }
-        
-        .btn-admin {
-            display: inline-block;
-            padding: 10px 20px;
-            background: rgba(255, 193, 7, 0.9);
-            color: #212529;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-admin:hover {
-            background: rgba(224, 168, 0, 0.9);
-            transform: translateY(-2px);
-        }
-        
         .settings-info {
-            background: rgba(209, 236, 241, 0.8);
+            background: #d1ecf1;
             color: #0c5460;
             padding: 10px 15px;
             border-radius: 6px;
             margin: 10px 0;
-            border-left: 3px solid rgba(23, 162, 184, 0.8);
+            border-left: 3px solid #17a2b8;
             font-size: 0.9em;
         }
     </style>
@@ -277,8 +141,8 @@ if ($query !== '') {
     </header>
 
     <!-- ======= Search Results ======= -->
-    <div class="main-content">
-        <div class="results-container">
+    <main class="main-content">
+        <div class="container">
             <?php if ($query === ''): ?>
                 <div class="no-results">
                     <i class="fas fa-search" style="font-size: 3em; color: #6c757d; margin-bottom: 20px;"></i>
@@ -309,28 +173,26 @@ if ($query !== '') {
                     </div>
                 </div>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Department</th>
+                            <th>Floor</th>
+                            <th>Extension</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $results->fetch_assoc()): ?>
                             <tr>
-                                <th>User</th>
-                                <th>Department</th>
-                                <th>Floor</th>
-                                <th>Extension</th>
+                                <td><?php echo htmlspecialchars($row['contact_name']); ?></td>
+                                <td><?php echo htmlspecialchars($row['department']); ?></td>
+                                <td><?php echo htmlspecialchars($row['floor']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Caller_ID']); ?></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($row = $results->fetch_assoc()): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($row['contact_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['department']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['floor']); ?></td>
-                                    <td><?php echo htmlspecialchars($row['Caller_ID']); ?></td>
-                                </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
 
                 <!-- Pagination -->
                 <?php if ($total_pages > 1): ?>

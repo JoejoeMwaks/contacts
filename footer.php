@@ -1,3 +1,3 @@
 <footer>
-    <p>© 2025 Kenya National Bureau of Statistics. All rights reserved.</p>
+    <p>&copy; 2025 Kenya National Bureau of Statistics. All rights reserved.</p>
 </footer>
