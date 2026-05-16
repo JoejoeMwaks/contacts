@@ -243,7 +243,12 @@ if ($query !== '') {
 <body>
     <!-- ======= Top Menu ======= -->
     <div class="top-menu">
-        <nav>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="results.php" class="active">Contacts</a></li>
                 <li><a href="#">Locations</a></li>
@@ -376,6 +381,20 @@ if ($query !== '') {
         </div>
     </footer>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
 

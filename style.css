@@ -29,19 +29,21 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #b06443; /* deep brown */
+  background: #b06443;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 30px;
+  padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
 }
 
 .top-menu nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  align-items: center;
 }
 
 .top-menu nav ul li a {
@@ -51,28 +53,88 @@ body {
   padding: 6px 12px;
   border-radius: 4px;
   transition: 0.3s;
+  font-size: 14px;
 }
 
 .top-menu nav ul li a:hover,
 .top-menu nav ul li a.active {
-  background: #ffcc00;   /* gold highlight */
-  color: #4d2600;        /* darker brown text */
+  background: #ffcc00;
+  color: #4d2600;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .login-btn {
   background: #ffcc00;
   color: #4d2600;
-  padding: 8px 20px;
+  padding: 6px 16px;
   border-radius: 6px;
   font-weight: bold;
   text-decoration: none;
   transition: 0.3s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 14px;
+  display: inline-block;
 }
 
-.login-btn:hover {
-  background: #e6b800;
-  transform: translateY(-1px);
+/* Hamburger Menu Icon */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Mobile Nav Styles */
+@media (max-width: 850px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .top-menu nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #b06443;
+    padding: 80px 20px;
+    transition: 0.3s;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  }
+
+  .top-menu nav.active {
+    right: 0;
+  }
+
+  .top-menu nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .top-menu nav ul li a {
+    font-size: 18px;
+    width: 100%;
+    display: block;
+  }
+
+  .menu-right {
+    margin-right: 40px; /* Space for hamburger */
+  }
 }
 
 /* ==========================
@@ -263,10 +325,6 @@ table th {
   font-weight: 600;
 }
 
-table tr:nth-child(even) {
-  background: #fdfaf8;
-}
-
 /* ==========================
    Pagination
 ========================== */
@@ -300,9 +358,10 @@ table tr:nth-child(even) {
 footer {
   background: #b06443;
   color: white;
-  padding: 25px 20px;
+  padding: 20px 15px;
   text-align: center;
   margin-top: auto;
+  width: 100%;
 }
 
 .footer-top {
@@ -331,7 +390,7 @@ footer {
 @media (max-width: 768px) {
   .top-menu {
     flex-direction: column;
-    padding: 15px;
+    padding: 10px 15px;
     gap: 15px;
   }
 
@@ -346,25 +405,33 @@ footer {
     text-align: center;
   }
 
+  .header-bottom {
+    padding: 10px;
+  }
+
   .site-title {
-    font-size: 20px;
+    font-size: 18px;
     margin: 10px 0;
   }
 
   .logo {
-    width: 60px;
+    width: 50px;
   }
 
   .telephone-img, .header-image {
     display: none; /* Hide on small screens to save space */
   }
 
+  .main-content {
+    padding: 15px 5px;
+  }
+
   .search-container {
-    padding: 25px;
+    padding: 20px 15px;
   }
 
   .search-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
